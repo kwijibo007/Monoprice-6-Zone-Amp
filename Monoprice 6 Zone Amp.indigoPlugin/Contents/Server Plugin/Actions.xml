@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<Actions>
+	<Action id="setVolume" deviceFilter="self">
+		<Name>Set Volume</Name>
+		<CallbackMethod>actionControlMulti</CallbackMethod>
+		<ConfigUI>
+			<Field id="volume" type="textfield" defaultValue="0">
+				<Label>Volume:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="incVolume" deviceFilter="self">
+		<Name>Increase Volume</Name>
+		<CallbackMethod>actionControlMulti</CallbackMethod>
+	</Action>
+	<Action id="decVolume" deviceFilter="self">
+		<Name>Decrease Volume</Name>
+		<CallbackMethod>actionControlMulti</CallbackMethod>
+	</Action>
+
+	<Action id="setBalance" deviceFilter="self">
+		<Name>Set Balance</Name>
+		<CallbackMethod>actionControlMulti</CallbackMethod>
+		<ConfigUI>
+			<Field id="balance" type="textfield" defaultValue="10">
+				<Label>Balance:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="incBalance" deviceFilter="self">
+		<Name>Increase Balance</Name>
+		<CallbackMethod>actionControlMulti</CallbackMethod>
+	</Action>
+	<Action id="decBalance" deviceFilter="self">
+		<Name>Decrease Balance</Name>
+		<CallbackMethod>actionControlMulti</CallbackMethod>
+	</Action>
+
+    <Action id="setBass" deviceFilter="self">
+		<Name>Set Bass</Name>
+		<CallbackMethod>actionControlMulti</CallbackMethod>
+		<ConfigUI>
+			<Field id="bass" type="textfield" defaultValue="7">
+				<Label>Bass:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="incBass" deviceFilter="self">
+		<Name>Increase Bass</Name>
+		<CallbackMethod>actionControlMulti</CallbackMethod>
+	</Action>
+	<Action id="decBass" deviceFilter="self">
+		<Name>Decrease Bass</Name>
+		<CallbackMethod>actionControlMulti</CallbackMethod>
+	</Action>
+
+    <Action id="setTreble" deviceFilter="self">
+		<Name>Set Treble</Name>
+		<CallbackMethod>actionControlMulti</CallbackMethod>
+		<ConfigUI>
+			<Field id="treble" type="textfield" defaultValue="7">
+				<Label>Treble:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="incTreble" deviceFilter="self">
+		<Name>Increase Treble</Name>
+		<CallbackMethod>actionControlMulti</CallbackMethod>
+	</Action>
+	<Action id="decTreble" deviceFilter="self">
+		<Name>Decrease Treble</Name>
+		<CallbackMethod>actionControlMulti</CallbackMethod>
+	</Action>
+
+	<Action id="onMute" deviceFilter="self">
+		<Name>Mute On</Name>
+		<CallbackMethod>actionControlMute</CallbackMethod>
+	</Action>
+	<Action id="offMute" deviceFilter="self">
+		<Name>Mute Off</Name>
+		<CallbackMethod>actionControlMute</CallbackMethod>
+	</Action>
+	<Action id="toggleMute" deviceFilter="self">
+		<Name>Toggle Mute</Name>
+		<CallbackMethod>actionControlMute</CallbackMethod>
+	</Action>
+	<Action id="setSource" deviceFilter="self">
+		<Name>Set Source</Name>
+		<CallbackMethod>actionControlSource</CallbackMethod>
+		<ConfigUI>
+			<Field id="source" type="menu">
+				<Label>Source:</Label>
+				<List class="self" filter="stuff" method="sourceListGenerator"/>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="toggleSourceFwd" deviceFilter="self">
+		<Name>Toggle Source Fwd</Name>
+		<CallbackMethod>actionControlSource</CallbackMethod>
+	</Action>
+	<Action id="toggleSourceRev" deviceFilter="self">
+		<Name>Toggle Source Rev</Name>
+		<CallbackMethod>actionControlSource</CallbackMethod>
+	</Action>
+</Actions>

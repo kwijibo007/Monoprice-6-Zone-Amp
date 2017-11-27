@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<PluginConfig>
+	<!-- You can add a SupportURL element inside here if you want a context
+		 sensitive help link on the config UI - otherwise it will just link
+		 to the URL specified in the Info.plist. -->
+	<Field id="RS232Label" type="label" fontSize="small" fontColor="darkgray">
+		<Label>Select the RS232 device plugged in to the Monoprice 6 Zone Amp</Label>
+	</Field>
+	<Field type="serialport" id="rs2322" />
+
+
+	<Field id="BlankLabel1" type="label" fontColor="darkgray">
+		<Label></Label>
+	</Field>
+	<Field id="SourceLabel" type="label" fontSize="small" fontColor="darkgray">
+		<Label>Select sources to enable</Label>
+	</Field>
+	<Field type="checkbox" id="enableSource1" defaultValue="false">
+		<Label>Source 1:</Label>
+	</Field>
+	<Field id="source1" type="textfield" defaultValue="" 		 visibleBindingValue="true">
+		<Label>Name:</Label>
+	</Field>
+	<Field type="checkbox" id="enableSource2" defaultValue="false">
+		<Label>Source 2:</Label>
+	</Field>
+	<Field id="source2" type="textfield" defaultValue="" visibleBindingId="enableSource2" visibleBindingValue="true">
+		<Label>Name:</Label>
+	</Field>
+	<Field type="checkbox" id="enableSource3" defaultValue="false">
+		<Label>Source 3:</Label>
+	</Field>
+	<Field id="source3" type="textfield" defaultValue="" visibleBindingId="enableSource3" visibleBindingValue="true">
+		<Label>Name:</Label>
+	</Field>
+	<Field type="checkbox" id="enableSource4" defaultValue="false">
+		<Label>Source 4:</Label>
+	</Field>
+	<Field id="source4" type="textfield" defaultValue="" visibleBindingId="enableSource4" visibleBindingValue="true">
+		<Label>Name:</Label>
+	</Field>
+	<Field type="checkbox" id="enableSource5" defaultValue="false">
+		<Label>Source 5:</Label>
+	</Field>
+	<Field id="source5" type="textfield" defaultValue="" visibleBindingId="enableSource5" visibleBindingValue="true">
+		<Label>Name:</Label>
+	</Field>
+	<Field type="checkbox" id="enableSource6" defaultValue="false">
+		<Label>Source 6:</Label>
+	</Field>
+	<Field id="source6" type="textfield" defaultValue="" visibleBindingId="enableSource6" visibleBindingValue="true">
+		<Label>Name:</Label>
+	</Field>
+	<Field id="BlankLabel2" type="label" fontColor="darkgray">
+		<Label></Label>
+	</Field>
+	<Field id="SourceLabel2" type="label" fontSize="small" fontColor="darkgray">
+		<Label>Configure logging</Label>
+	</Field>
+	<Field id="logLevel" type="menu" defaultValue="20">
+		<Label>Event Logging Level:</Label>
+      		<List>
+         		<Option value="10">Debugging Messages</Option>
+         		<Option value="20">Informational Messages</Option>
+         		<Option value="30">Warning Messages</Option>
+         		<Option value="40">Error Messages</Option>
+				<Option value="50">Critical Errors Only</Option>
+      		</List>
+   </Field>
+</PluginConfig>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<Devices>
+	<!-- This device illustrates how a plugin can inherit Indigo's sensor
+	device behavior including on/off and numerical value states and will
+	support Indigo and Indigo Touch's native UI for sensor type devices.
+	-->
+	<Device type="relay" id="zone">
+		<Name>Zone</Name>
+		<ConfigUI>
+			<Field id="zoneID" type="menu" defaultValue="item1">
+				<Label>Zone:</Label>
+				<List>
+		            <Option value="11">Zone 1</Option>
+		            <Option value="12">Zone 2</Option>
+		            <Option value="13">Zone 3</Option>
+		            <Option value="14">Zone 4</Option>
+		            <Option value="15">Zone 5</Option>
+		            <Option value="16">Zone 6</Option>
+		        </List>
+			</Field>
+			<Field id="maxVol" type="textfield" defaultValue="38">
+			    <Label>Max Volume:</Label>
+			</Field>
+		</ConfigUI>
+		<States>
+		    <State id="volume">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Current Volume</TriggerLabel>
+				<ControlPageLabel>Current Volume</ControlPageLabel>
+			</State>
+			<State id="bass">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Current Bass</TriggerLabel>
+				<ControlPageLabel>Current Bass</ControlPageLabel>
+			</State>
+			<State id="balance">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Current Balance</TriggerLabel>
+				<ControlPageLabel>Current Balance</ControlPageLabel>
+			</State>
+			<State id="treble">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Current Treble</TriggerLabel>
+				<ControlPageLabel>Current Treble</ControlPageLabel>
+			</State>
+			<State id="mute">
+                <ValueType>
+                    <List>
+                        <Option value="off">Off</Option>
+                        <Option value="on">On</Option>
+                    </List>
+                </ValueType>
+                <TriggerLabel>Mute Changed</TriggerLabel>
+                <TriggerLabelPrefix>Mute Changed to</TriggerLabelPrefix>
+                <ControlPageLabel>Current Mute</ControlPageLabel>
+                <ControlPageLabelPrefix>Mute is</ControlPageLabelPrefix>
+            </State>
+            <State id="source">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Current Source</TriggerLabel>
+				<ControlPageLabel>Current Source</ControlPageLabel>
+			</State>
+		</States>
+	</Device>
+</Devices>
