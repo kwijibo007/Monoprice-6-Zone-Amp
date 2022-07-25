@@ -8,8 +8,8 @@
 import indigo
 import serial
 import time
-import Queue
-import thread
+import queue
+import _thread
 import datetime
 import logging
 
@@ -32,7 +32,7 @@ multiCMD = ""
 
 #Declare global variables
 ser = serial
-q = Queue.Queue()#maxsize=5)
+q = queue.Queue()#maxsize=5)
 serialUIAddress = None
 
 stallingSafeGuard = 0
@@ -91,6 +91,10 @@ class Plugin(indigo.PluginBase):
         else:
             self.logger.critical("Unable to open serial port.")
             self.logger.critical("Check serial port and plugin configuration. Then restart the plugin.")
+            
+    def deviceStartComm(self, dev):
+        dev.stateListOrDisplayStateIdChanged()
+        return
 
 
     ########################################
@@ -105,8 +109,8 @@ class Plugin(indigo.PluginBase):
 
     ########################################
     def runConcurrentThread(self):
-        thread.start_new_thread(self.queueWorker, ())
-        thread.start_new_thread(self.volumeWatcher, ())
+        _thread.start_new_thread(self.queueWorker, ())
+        _thread.start_new_thread(self.volumeWatcher, ())
         try:
             while True:
             
@@ -140,11 +144,12 @@ class Plugin(indigo.PluginBase):
         self.logger.debug("*#* Var: response: " + str(response))
         settings = [] 
 
-        lines = response.split('\n')
+        lines = response.decode("utf-8").split('\n')
+
     
         #Iterate through response and sepearte zones into a list of arrays
         for line in lines[1:-1]:
-            settings.append(map(''.join, zip(*[iter(line[2:].replace("\r",""))]*2)))
+            settings.append(list(map(''.join, zip(*[iter(line[2:].replace("\r",""))]*2))))
         
         for dev in indigo.devices.iter("self"):
             zone = (int(dev.pluginProps["zoneID"]) - 11)
@@ -261,7 +266,7 @@ class Plugin(indigo.PluginBase):
     def validateActionConfigUi(self, valuesDict, typeId, devId):
         return (True, valuesDict)
 	
-	########################################
+    ########################################
     def actionControlDimmerRelay(self, action, dev):
     ###### TURN ON ######
         if action.deviceAction == indigo.kDeviceAction.TurnOn:
@@ -492,29 +497,29 @@ class Plugin(indigo.PluginBase):
         return sourceList
 
         
-	########################################
-	def actionControlGeneral(self, action, dev):
-	#General Action callback
-		###### BEEP ######
-		if action.deviceAction == indigo.kDeviceGeneralAction.Beep:
-			# Beep the hardware module (dev) here:
-			# ** IMPLEMENT ME **
-			indigo.server.log(u"sent \"%s\" %s" % (dev.name, "beep request"))
+    ########################################
+    def actionControlGeneral(self, action, dev):
+    #General Action callback
+        ###### BEEP ######
+        if action.deviceAction == indigo.kDeviceGeneralAction.Beep:
+            # Beep the hardware module (dev) here:
+            # ** IMPLEMENT ME **
+            indigo.server.log(u"sent \"%s\" %s" % (dev.name, "beep request"))
 
-		###### ENERGY UPDATE ######
-		elif action.deviceAction == indigo.kDeviceGeneralAction.EnergyUpdate:
-			# Request hardware module (dev) for its most recent meter data here:
-			# ** IMPLEMENT ME **
-			indigo.server.log(u"sent \"%s\" %s" % (dev.name, "energy update request"))
+        ###### ENERGY UPDATE ######
+        elif action.deviceAction == indigo.kDeviceGeneralAction.EnergyUpdate:
+            # Request hardware module (dev) for its most recent meter data here:
+            # ** IMPLEMENT ME **
+            indigo.server.log(u"sent \"%s\" %s" % (dev.name, "energy update request"))
 
-		###### ENERGY RESET ######
-		elif action.deviceAction == indigo.kDeviceGeneralAction.EnergyReset:
-			# Request that the hardware module (dev) reset its accumulative energy usage data here:
-			# ** IMPLEMENT ME **
-			indigo.server.log(u"sent \"%s\" %s" % (dev.name, "energy reset request"))
+        ###### ENERGY RESET ######
+        elif action.deviceAction == indigo.kDeviceGeneralAction.EnergyReset:
+            # Request that the hardware module (dev) reset its accumulative energy usage data here:
+            # ** IMPLEMENT ME **
+            indigo.server.log(u"sent \"%s\" %s" % (dev.name, "energy reset request"))
 
-		###### STATUS REQUEST ######
-		elif action.deviceAction == indigo.kDeviceGeneralAction.RequestStatus:
-			# Query hardware module (dev) for its current status here:
-			# ** IMPLEMENT ME **
-			indigo.server.log(u"sent \"%s\" %s" % (dev.name, "status request"))
+        ###### STATUS REQUEST ######
+        elif action.deviceAction == indigo.kDeviceGeneralAction.RequestStatus:
+            # Query hardware module (dev) for its current status here:
+            # ** IMPLEMENT ME **
+            indigo.server.log(u"sent \"%s\" %s" % (dev.name, "status request"))
